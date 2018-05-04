@@ -12,7 +12,7 @@
           calls hideItems(), to hides the child elements
             takes a $node as required argument
             the parent html element node is not modified
-            a style attribute of display:none is dynamically added to each child elements
+            a style attribute of display:none is dynamically added to each child element
             returns the $node
 
           calls showPage(), to show child elements for a given page
@@ -39,11 +39,13 @@
 
       must select the parent element with child element that will be paginated
 
-        // example :
+        // example : select the parent element containing child elements paginate
           $NODE = $('.myParentElementClass');
+            // using a class name just as an example
 
         // then use it twice in the initial call to the plugin:
           $NODE.append( appendPageLinks($NODE) );
+          // notice the 2 instances of '$NODE'
 
 # OPTIONAL PARAMETERS, DEFAULTS SETTINGS:
 
@@ -64,7 +66,7 @@
 
        step 1: add the following lines to YOURapp.js
 
-          const $node = $('.myULElementClass');  // select ul element with list items to paginate
+          const $node = $('.myElementClass');  // select element with elements to paginate
 
           $node.append( appendPageLinks($node) );  // paginate and add Event Listener for each page
 
