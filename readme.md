@@ -4,6 +4,20 @@
 
 # SUMMARY:
 
+  Current features
+
+    Pagination:
+
+      Separates display of child elements, or items, of a selected HTML parent element into pages based on Items-Per-Page. Default is 10 Items-Per-Page.
+
+  Wish List :
+
+    Search and Content Filter:
+
+      Search and display of content html child elements that match search criteria.
+
+# FUNCTION DETIAL:
+
       appendPageLinks() function,
         adds the pagination functionality for selected html elements child elements
         for selected parent html element node, $node
@@ -94,6 +108,9 @@
             - and sample student-list/student-items/cf
 
         css/reset.css, a compatibility for older browsers
+
+        other than pagination and content filter...
+            css styling of your html sub-elements will be unchanged
 
 # SAMPLE HTML with student list:
 
