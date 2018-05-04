@@ -1,6 +1,6 @@
-#About the appendPageLinks plugin function...
+# Tech Degree - Project 2 - the Pagination plugin function...
 
-#SUMMARY:
+# SUMMARY:
 
       this plugin requires the latest jQuery
 
@@ -36,7 +36,7 @@
             and calls the appendPageLinks() function, passing $node, pageToShow, itemsPerPage as arguments
 
 
-#REQUIRED PARAMETERS:
+# REQUIRED PARAMETERS:
 
       must select the parent element with child element that will be paginated
 
@@ -46,7 +46,7 @@
         // then use it twice in the initial call to the plugin:
           $NODE.append( appendPageLinks($NODE) );
 
-#OPTIONAL PARAMETERS, DEFAULTS SETTINGS:
+# OPTIONAL PARAMETERS, DEFAULTS SETTINGS:
 
       pageToShow = 1
       itemsPerPage =  10
@@ -59,7 +59,7 @@
 
         $node.append( appendPageLinks($node, 1, 20) );
 
-#TO USE:
+# TO USE:
 
        to use this plugin, follow 3 steps:
 
@@ -80,11 +80,11 @@
            <script src="js-dir-to/paginatgion-plugin.js"></script>
            <script src="js-dir-or-link-to/YOURapp.js"></script>
 
-#JS src code:
+# JS src code:
 
         js/pagination-plugin.js, src for the pagination-plugin
 
-#CSS styling of elements:
+# CSS styling of elements:
 
         css/design.css, css styling includes,
             - styles for pagination buttons
@@ -92,7 +92,7 @@
 
         css/reset.css, a compatibility for older browsers
 
-#SAMPLE HTML with student list:
+# SAMPLE HTML with student list:
 
           - index.html, in the root dir,
             a sample is provided to demonstrate the implementation of the pagination-plugin
