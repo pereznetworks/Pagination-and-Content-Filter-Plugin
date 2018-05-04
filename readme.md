@@ -1,4 +1,4 @@
-# Tech Degree - Project 2 - the Pagination and Content Enhancement plugin function
+# Tech Degree - Project 2 - the Pagination and Content Filter plugin function
 
     this is Project 2, TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
 
