@@ -8,7 +8,9 @@
 
     Pagination:
 
-      Separates display of child elements, or items, of a selected HTML parent element into pages based on Items-Per-Page. Default is 10 Items-Per-Page.
+      Display of child elements, or items, based on Items-Per-Page.
+      Pagination applied to a selected HTML parent element.
+      Default is 10 Items-Per-Page.
 
   Wish List :
 
