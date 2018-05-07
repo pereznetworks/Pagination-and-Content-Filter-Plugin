@@ -96,12 +96,12 @@ function createPageLinks(lengthOfArray, pageToShow, itemsPerPage){
 
 } // end createPageLinks function
 
-function appendPageLinks ($node, pageToShow, itemsPerPage) {
+function appendPageLinks($node, pageToShow, itemsPerPage) {
 
   /* adds pagination functionality
       calls showPage() with requried arguments to hide/show list items for a given page
       calls createPageLinks() with required arguments to add a set of page links
-      adds a event listener for each page link
+      adds a event listener for each page link to call appendPageLinks()
    */
 
   let perPage = 10;  // default itemsPerPage
@@ -120,29 +120,28 @@ function appendPageLinks ($node, pageToShow, itemsPerPage) {
   // hide all html child elements from the ul that contain the list items
   hideItems($node);
 
+
   // take the node of list items, split up into as many pages needed for ItemsPerPage
   $node = showPage($node, pageNum, perPage);
-  //$ulList.append( itemsToShow );
-
-  // initial run and each time a page of links is displayed
-          // create a page link section
-            // "for" every page
-              // add a page link to the page link section
-                  //  and mark "pageToShow" link as the active link.
-
 
   $node.parent().append( createPageLinks(lengthOfArray, pageNum, perPage) );
-  // $ulList.append( pageLinks );
+  // initial run and each time after, create and append a new set of page links
 
   const paginationLinks = document.querySelectorAll('.pagination li a')
+  // select the newly added pagelinks
 
-  paginationLinks.forEach(a => {
+  paginationLinks.forEach(a => {  // for each pagelink add an event listener
+
     a.addEventListener('click', function (){
       // if a page link clicked
 
-      pageToShow = $(this)[0].getAttribute('value');  // get the page number to show
+      pageToShow = $(this)[0].getAttribute('value');
+      // get the page number to show
       $('.pagination').remove('*');
-      $node.append( appendPageLinks($node, pageToShow, itemsPerPage) ); // user selects pageToShow, default 4 list items per page
+      // remove the previous page links
+      $node.append( appendPageLinks($node, pageToShow, itemsPerPage) );
+
+      // call appendPageLinks, passing $node, pageToShow, default items per page
 
       // and append that list to the page.
       // When each link is clicked,
@@ -150,7 +149,7 @@ function appendPageLinks ($node, pageToShow, itemsPerPage) {
 
             // For example, clicking the link to page 2
               //  will tell the showPage function to display students 11 through 20.
-      //event.preventDefault();
+
       }); // end pagination event listener
 
    }); // end forEach paginationLinks
