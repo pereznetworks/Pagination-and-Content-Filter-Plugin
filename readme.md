@@ -31,7 +31,7 @@
         adds an Event Listener to the form
 
       captures search input
-      if search input in not blank
+      if search input is not blank
         hides all child elements of $node passed, adding style="display:none;" attribute
         removes pagination pagination links  
         iterates through $node child elements
@@ -39,7 +39,7 @@
               remove style="display:none;" attribute
 
         todo: add pagination links for $node elements that are displayed
-        todo: implement a reset 
+        todo: implement a reset
 
 # FUNCTION DETIAL appendPageLinks():
 
