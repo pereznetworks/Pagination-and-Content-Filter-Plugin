@@ -33,7 +33,7 @@
       captures search input
       if search input is not blank
         hides all child elements of $node passed, adding style="display:none;" attribute
-        removes pagination pagination links  
+        removes pagination links  
         iterates through $node child elements
             if any child elements contain text that include search input
               remove style="display:none;" attribute
