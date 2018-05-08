@@ -115,7 +115,7 @@ function appendPageLinks($node, pageToShow, itemsPerPage) {
   } // if pageToShow passed, use it
 
   // getting the length of array of list items
-  const lengthOfArray = $node.children().length
+  const lengthOfArray = $node.children().length;
 
   // hide all html child elements from the ul that contain the list items
   hideItems($node);

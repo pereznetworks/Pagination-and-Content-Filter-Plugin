@@ -46,9 +46,39 @@ function runSearchTool($node, searchInput){
   appendSearchTool($node)  // add search tool (yes, it's a form )
 
   document.getElementById('search-tool').addEventListener('submit', function(e) {
+    // on submit, capture text typed into search input field
     e.preventDefault();
+
+    let $searchResults = document.createElement('ul');
     let searchParam = $('#search-tool input')[0].value.toLowerCase();
     console.log(`search paramater entered: ${searchParam}`);
-  });  // on submit, capture text typed into search input field
 
-}
+    if (searchParam){
+      hideItems($node);  // hide all, adds style='display:none;' attribute
+      $('.pagination').remove('*'); // remove paginaiton links
+
+      for (let i = 0; i < $node.children('li').length; i++) {
+      // iterate through each of $node's elements
+        if ( $node.children('li')[i].textContent.toLowerCase().includes(searchParam) ) {
+        // if any of the element's tags include the word or phrase "seachParam"
+          $node.children('li')[i].setAttribute('style','');
+          // removes the style attribute
+        }
+      }
+
+      // let resultsToShow = $searchResults.children().length;
+      // let pagesNeeded = math.ceil(resultsToShow/10);
+
+      // $node.append(appendPageLinks($node));
+      // show the search results with pagelinks
+      document.querySelector('#searchInput').setAttribute('placeholder', 'submit empty search to reset....');
+
+    } else {
+      app.js
+    }
+
+
+
+    });
+
+  }
