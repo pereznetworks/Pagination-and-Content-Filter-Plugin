@@ -6,24 +6,24 @@
 
   Current features
 
-    Pagination:
+    for a selected HTML Collecton node
 
-      Display of child elements, or items, based on Items-Per-Page.
-      Pagination applied to a selected HTML parent element.
-      Default is 10 Items-Per-Page.
+      Pagination:
 
-  Wish List :
+        Display of child elements, or items, based on Items-Per-Page.
+        Pagination applied to a selected HTML parent element.
+        Default is 10 Items-Per-Page.
 
-    Search Form added
+      Search Form and Content Filter:
 
-      TO DO: implement Search and Content Filter:
-
-      Search and display of content html child elements that match search criteria.
+        Search and display of child elements with text-content matching text submitted into search-tool input.
 
 # FUNCTION DETIAL runSearchTool():
 
 
     runSearchTool($node)
+
+      todo: display 'no results found' when search input results in no matches 
 
       calls appendSearchTool($node)
         calls buildSearchTool() builds a form with text input field and submit button
@@ -31,15 +31,19 @@
         adds an Event Listener to the form
 
       captures search input
-      if search input is not blank
+      if search input is not blank or is not empty
         hides all child elements of $node passed, adding style="display:none;" attribute
         removes pagination links  
         iterates through $node child elements
             if any child elements contain text that include search input
               remove style="display:none;" attribute
 
-        todo: add pagination links for $node elements that are displayed
-        todo: implement a reset
+        adds new set of page links for search results
+
+        a new search, clears previous search results and clears search result page links
+
+        submitting blank, or empty, search resets to pagination of all child elements
+
 
 # FUNCTION DETIAL appendPageLinks():
 

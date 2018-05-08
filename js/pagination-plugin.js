@@ -27,36 +27,45 @@ function hideItems($node){
   $node.children().attr('style', 'display:none');
 }
 
-function showPage($node, pageToShow, itemsPerPage) {
+function showPage($node, pageToShow, itemsPerPage, showSrchReslts) {
 
   /* takes a jquery html collection node of ul/li elements as an argument
      on given page, remove the style attribute for list items for that page
      return the html collection node of ul/li elements
      required argument: jquery html collection node
   */
+  if (!showSrchReslts){
 
-  // get a starting index for this page of list items
-  let index = setIndex( pageToShow, itemsPerPage);
+      // get a starting index for this page of list items
+      let index = setIndex( pageToShow, itemsPerPage);
 
-  // get the end index for this page of list of itemns
-  let maxIndex = setMaxIndex($node.children().length, pageToShow, itemsPerPage);
+      // get the end index for this page of list of itemns
+      let maxIndex = setMaxIndex($node.children().length, pageToShow, itemsPerPage);
 
-  // iterate thru all list items in the node
-  $node.children().each( function () {
-      // iterate only through list items [index] thru [maxIndex]
-      if (index <= maxIndex) {
-        // remove the style attribute for this list item
-       $node.children()[index].removeAttribute('style');
-      } // end if
-      // increment index
-      index++;
-    }); // end .each
+      // iterate thru all list items in the node
+      $node.children().each( function () {
+          // iterate only through list items [index] thru [maxIndex]
+          if (index <= maxIndex) {
+            // remove the style attribute for this list item
+           $node.children()[index].removeAttribute('style');
+          } // end if
+          // increment index
+          index++;
+      }); // end .each
+
+    } else {
+      $node.children('#search-result').each( function () {
+        // iterate only through list items that have the the id of search-result
+        this.removeAttribute('style');
+        // remove the  style attribute
+      }); // end .each
+
+    } // end if/else
 
   return $node;  // return the $node with the modified list items
-
 } // end showPage function
 
-function createPageLinks(lengthOfArray, pageToShow, itemsPerPage){
+function createPageLinks(lengthOfArray, pageToShow, itemsPerPage, showSrchReslts){
 
   /* takes number of pages needed return a div with a ul/li of page links
     required arguments: lengthOfArray, pageToShow, itemsPerPage
@@ -96,7 +105,7 @@ function createPageLinks(lengthOfArray, pageToShow, itemsPerPage){
 
 } // end createPageLinks function
 
-function appendPageLinks($node, pageToShow, itemsPerPage) {
+function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) {
 
   /* adds pagination functionality
       calls showPage() with requried arguments to hide/show list items for a given page
@@ -106,7 +115,7 @@ function appendPageLinks($node, pageToShow, itemsPerPage) {
 
   let perPage = 10;  // default itemsPerPage
   if (itemsPerPage) {
-    perPage = ItemsPerPage;
+    perPage = itemsPerPage;
   } // if ItemsPerPage passed, use it
 
   let pageNum = 1; // by default show page 1
@@ -114,15 +123,30 @@ function appendPageLinks($node, pageToShow, itemsPerPage) {
     pageNum = pageToShow;
   } // if pageToShow passed, use it
 
-  // getting the length of array of list items
-  const lengthOfArray = $node.children().length;
+  let lengthOfArray = 0;
 
-  // hide all html child elements from the ul that contain the list items
-  hideItems($node);
+  if (!showSrchReslts) {  // if not showing search results
 
+    // getting the length of array of list items
+    lengthOfArray = $node.children().length;
 
-  // take the node of list items, split up into as many pages needed for ItemsPerPage
-  $node = showPage($node, pageNum, perPage);
+    // hide all html child elements from the ul that contain the list items
+    hideItems($node);
+
+    // take the node of list items, split up into as many pages needed for ItemsPerPage
+    $node = showPage($node, pageNum, perPage);
+
+  } else {
+
+    lengthOfArray = $node.children('#search-result').length;
+
+    // hide all html child elements from the ul that contain the list items
+    hideItems($node);
+
+    // take the node of list items, split up into as many pages needed for ItemsPerPage
+    $node = showPage($node, pageNum, perPage, showSrchReslts);
+  }
+
 
   $node.parent().append( createPageLinks(lengthOfArray, pageNum, perPage) );
   // initial run and each time after, create and append a new set of page links
@@ -139,7 +163,12 @@ function appendPageLinks($node, pageToShow, itemsPerPage) {
       // get the page number to show
       $('.pagination').remove('*');
       // remove the previous page links
-      $node.append( appendPageLinks($node, pageToShow, itemsPerPage) );
+      if (!showSrchReslts) {
+        $node.append( appendPageLinks($node, pageToShow, itemsPerPage) );
+      } else {
+        $node.append( appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) );
+      }
+
 
       // call appendPageLinks, passing $node, pageToShow, default items per page
 
@@ -155,3 +184,13 @@ function appendPageLinks($node, pageToShow, itemsPerPage) {
    }); // end forEach paginationLinks
 
 } // end appendPageLinks function
+
+function paginationPlugin($node){
+  // append Search Tool
+  // use search paramaters entered into search input field
+  // display search results
+    runSearchTool($node);
+
+  // paginate and add Event Listener for each page link, add Search. Content Filter tool
+    $node.append( appendPageLinks($node) );
+}

@@ -35,9 +35,13 @@ function buildSearchTool($node){
 }
 
 function appendSearchTool($node) {
-  // call buildSearchTool and append to parent of $node, before (or above) $node
 
-  $node.parent()[0].firstElementChild.append( buildSearchTool() );
+    $('.search-tool').remove('*')
+  // remove search-tool if there is one already
+    $('.pagination').remove('*');
+  // remove the previous page links
+    $node.parent()[0].firstElementChild.append( buildSearchTool() );
+  // call buildSearchTool and append to parent of $node, before (or above) $node
 
 }
 
@@ -49,36 +53,44 @@ function runSearchTool($node, searchInput){
     // on submit, capture text typed into search input field
     e.preventDefault();
 
-    let $searchResults = document.createElement('ul');
+    // reset from previous search results
+    // iterate thru all list items in the node
+    $node.children().each( function () {
+         this.removeAttribute('id', 'search-result');
+    }); // end .each
+
+    let SrchResltsObject = {};
     let searchParam = $('#search-tool input')[0].value.toLowerCase();
     console.log(`search paramater entered: ${searchParam}`);
 
-    if (searchParam){
-      hideItems($node);  // hide all, adds style='display:none;' attribute
-      $('.pagination').remove('*'); // remove paginaiton links
+      if (searchParam){
+        hideItems($node);  // hide all, adds style='display:none;' attribute
+        $('.pagination').remove('*'); // remove paginaiton links
 
-      for (let i = 0; i < $node.children('li').length; i++) {
-      // iterate through each of $node's elements
-        if ( $node.children('li')[i].textContent.toLowerCase().includes(searchParam) ) {
-        // if any of the element's tags include the word or phrase "seachParam"
-          $node.children('li')[i].setAttribute('style','');
-          // removes the style attribute
+        for (let i = 0; i < $node.children('li').length; i++) {
+        // iterate through each of $node's elements
+          if ( $node.children('li')[i].textContent.toLowerCase().includes(searchParam) ) {
+          // if any of the element's tags include the word or phrase "seachParam"
+            $node.children('li')[i].setAttribute('id','search-result');
+            // remove the style attribute
+          }
         }
+
+        SrchResltsObject.pageToShow = 1;
+        SrchResltsObject.itemsPerPage = 10;
+        SrchResltsObject.show = true;
+        $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.show));
+
+        //$node.append(appendPageLinks($node));
+        // show the search results with pagelinks
+        document.querySelector('#searchInput').setAttribute('placeholder', 'submit empty search to reset....');
+
+      } else {
+        
+        // reset from search results, to pagination of all $node's elements
+        paginationPlugin($node);
       }
 
-      // let resultsToShow = $searchResults.children().length;
-      // let pagesNeeded = math.ceil(resultsToShow/10);
-
-      // $node.append(appendPageLinks($node));
-      // show the search results with pagelinks
-      document.querySelector('#searchInput').setAttribute('placeholder', 'submit empty search to reset....');
-
-    } else {
-      app.js
-    }
-
-
-
-    });
+    });  // end add event listener to search-tool button
 
   }

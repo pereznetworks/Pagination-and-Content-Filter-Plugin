@@ -2,15 +2,9 @@ $(document).ready(function() {
 
 
 // get ul element with list items to paginate
-  const $ulList = $('.student-list');
+  const $node = $('.student-list');
 
-// append Search Tool
-  runSearchTool($ulList);
-
-// paginate and add Event Listener for each page link, add Search. Content Filter tool
-  $ulList.append( appendPageLinks($ulList) );
-
-// use search paramaters entered into search input field
-// display search results
+// add the paginaiton-plugin paginaiton and content filtering features to selected $node
+  paginationPlugin($node);
 
 }); // end ready function
