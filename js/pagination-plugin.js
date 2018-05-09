@@ -23,9 +23,9 @@ function setMaxIndex(lengthOfArray, pageToShow, itemsPerPage){
 }
 
 function hideItems($node){
-  // 'hide' all list items in the html Node by adding a style attribute of 'display:none;'
-  $node.children().attr('style', 'display:none');
-}
+    // 'hide' all list items in the html Node by adding a style attribute of 'display:none;'
+    $node.children().attr('style', 'display:none');
+  }
 
 function showPage($node, pageToShow, itemsPerPage, showSrchReslts) {
 
@@ -152,46 +152,44 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) {
       // take the node of list items, split up into as many pages needed for ItemsPerPage
       $node = showPage($node, pageNum, perPage, showSrchReslts);
 
+    } // end if no search-results/else
 
-        $node.parent().append( createPageLinks(lengthOfArray, pageNum, perPage) );
-        // initial run and each time after, create and append a new set of page links
+  } // end if not showing search results
 
-        const paginationLinks = document.querySelectorAll('.pagination li a')
-        // select the newly added pagelinks
+  $node.parent().append( createPageLinks(lengthOfArray, pageNum, perPage) );
+  // initial run and each time after, create and append a new set of page links
 
-        paginationLinks.forEach(a => {  // for each pagelink add an event listener
+  const paginationLinks = document.querySelectorAll('.pagination li a')
+  // select the newly added pagelinks
 
-          a.addEventListener('click', function (){
-            // if a page link clicked
+  paginationLinks.forEach(a => {  // for each pagelink add an event listener
 
-            pageToShow = $(this)[0].getAttribute('value');
-            // get the page number to show
-            $('.pagination').remove('*');
-            // remove the previous page links
-            if (!showSrchReslts) {
-              $node.append( appendPageLinks($node, pageToShow, itemsPerPage) );
-            } else {
-              $node.append( appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) );
-            }
+    a.addEventListener('click', function (){
+      // if a page link clicked
+
+      pageToShow = $(this)[0].getAttribute('value');
+      // get the page number to show
+      $('.pagination').remove('*');
+      // remove the previous page links
+      if (!showSrchReslts) {
+        $node.append( appendPageLinks($node, pageToShow, itemsPerPage) );
+      } else {
+        $node.append( appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) );
+      }
 
 
-            // call appendPageLinks, passing $node, pageToShow, default items per page
+      // call appendPageLinks, passing $node, pageToShow, default items per page
 
-            // and append that list to the page.
-            // When each link is clicked,
-              //  we'll use the showPage function to display the corresponding page,
+      // and append that list to the page.
+      // When each link is clicked,
+        //  we'll use the showPage function to display the corresponding page,
 
-                  // For example, clicking the link to page 2
-                    //  will tell the showPage function to display students 11 through 20.
+            // For example, clicking the link to page 2
+              //  will tell the showPage function to display students 11 through 20.
 
-            }); // end pagination event listener
+      }); // end pagination event listener
 
-         }); // end forEach paginationLinks
-
-    }
-
-  }
-
+   }); // end forEach paginationLinks
 
 
 } // end appendPageLinks function

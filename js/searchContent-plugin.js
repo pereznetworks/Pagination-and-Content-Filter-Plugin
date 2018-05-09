@@ -100,11 +100,14 @@ function runSearchTool($node, searchInput){
         SrchResltsObject.itemsPerPage = 10;
         SrchResltsObject.show = true;
 
-
         $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.show));
 
-        //$node.append(appendPageLinks($node));
-        // show the search results with pagelinks
+        // when a search result is shown
+
+        //first, make sure that a previous hint is removed
+        $('#resetHint').remove('*');
+
+        // then put up a new one
         const resetHint = document.createElement('span');
         resetHint.setAttribute('id', 'resetHint');
         resetHint.setAttribute('style', 'float:right;')
