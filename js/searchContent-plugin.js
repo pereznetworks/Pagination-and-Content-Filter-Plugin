@@ -34,6 +34,23 @@ function buildSearchTool($node){
 
 }
 
+function buildNoResultsListItem($node) {
+  const noresultsListItem = document.createElement('li');
+  noresultsListItem.setAttribute('class', 'listItem')
+
+  const noresultsDetails =  document.createElement('div');
+  noresultsDetails.setAttribute('class', 'listItem-details');
+
+  const noresultsh3 = document.createElement('h3');
+  noresultsh3.textContent = "No results."
+
+  noresultsDetails.append(noresultsh3);
+  noresultsListItem.append(noresultsDetails);
+
+  return noresultsListItem;
+
+}
+
 function appendSearchTool($node) {
 
     $('.search-tool').remove('*')
@@ -65,6 +82,7 @@ function runSearchTool($node, searchInput){
 
       if (searchParam){
         hideItems($node);  // hide all, adds style='display:none;' attribute
+        let matches = 0;
         $('.pagination').remove('*'); // remove paginaiton links
 
         for (let i = 0; i < $node.children('li').length; i++) {
@@ -73,20 +91,29 @@ function runSearchTool($node, searchInput){
           // if any of the element's tags include the word or phrase "seachParam"
             $node.children('li')[i].setAttribute('id','search-result');
             // remove the style attribute
+            matches++;
+
           }
         }
 
         SrchResltsObject.pageToShow = 1;
         SrchResltsObject.itemsPerPage = 10;
         SrchResltsObject.show = true;
+
+
         $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.show));
 
         //$node.append(appendPageLinks($node));
         // show the search results with pagelinks
-        document.querySelector('#searchInput').setAttribute('placeholder', 'submit empty search to reset....');
+        const resetHint = document.createElement('span');
+        resetHint.setAttribute('id', 'resetHint');
+        resetHint.setAttribute('style', 'float:right;')
+        resetHint.textContent = 'submit empty search to reset....';
+        document.querySelector('.search-tool').append(resetHint);
+
 
       } else {
-        
+
         // reset from search results, to pagination of all $node's elements
         paginationPlugin($node);
       }

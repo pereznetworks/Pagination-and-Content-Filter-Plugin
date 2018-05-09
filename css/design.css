@@ -32,8 +32,14 @@ body{
       border: 1px solid #eaeaea;
       padding: 8px 15px;
       font-size: 14px;
+      width:auto;
     }
 
+    .page-header #resetHint {
+      color: #888;
+      font-size: 14px;
+      margin-top: 8px;
+    }
     .page-header #searchButton{
       border-radius: 5px;
       border: 1px solid #eaeaea;
@@ -115,6 +121,58 @@ body{
     padding: 0;
     border-bottom: none;
   }
+
+  .item-list{}
+
+    .listItem{
+      margin: 0 0 20px 0;
+      padding: 0 0 20px 0;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+      .listItem-details{
+        width: 50%;
+        float: left;
+      }
+
+        .listItem-details .avatar{
+          width: 40px;
+          height: auto;
+          border-radius: 20px;
+          float: left;
+          margin-right: 14px
+        }
+
+        .listItem-details h3{
+          margin: 4px 0 2px 0;
+          font-weight: bold;
+          color: #4ba6c3;
+        }
+
+        .listItem-details .email{
+          color: #888;
+          font-size: 14px;
+        }
+
+
+      .joined-details{
+        width: 50%;
+        float: left;
+        text-align: right;
+      }
+
+        .joined-details .date{
+          margin-top: 15px;
+          display: block;
+          font-size: 14px;
+          color: #999;
+        }
+
+    .list-item:last-child{
+      margin: 0;
+      padding: 0;
+      border-bottom: none;
+    }
 
 .pagination{
   margin: 40px 0 0 0;
