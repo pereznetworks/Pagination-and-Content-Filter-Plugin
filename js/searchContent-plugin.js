@@ -66,9 +66,32 @@ function runSearchTool($node, searchInput){
 
   appendSearchTool($node)  // add search tool (yes, it's a form )
 
+  $( "#searchInput" ).keyup(function(event){
+
+    $node.children().removeAttr('style', 'display:none;')
+    // reset $node child node attributes after each keyup search
+
+    $node.children().filter(function(){
+      // filter on just first level child nodes, don't drill into each child node
+
+      if ( !this.textContent.toLowerCase().includes(event.target.value.toLowerCase()) ) {
+        $(this).attr('style','display:none;');
+        // if $node child textContent includes text from search input
+        // add display none style tag
+      }  // end if there is a match
+
+    }); // end contents filter
+
+  }); // end keyup
+
   document.getElementById('search-tool').addEventListener('submit', function(e) {
     // on submit, capture text typed into search input field
     e.preventDefault();
+
+    let SrchResltsObject = {};
+    SrchResltsObject.pageToShow = 1;
+    SrchResltsObject.itemsPerPage = 10;
+    SrchResltsObject.show = true;
 
     // reset from previous search results
     // iterate thru all list items in the node
@@ -76,7 +99,6 @@ function runSearchTool($node, searchInput){
          this.removeAttribute('id', 'search-result');
     }); // end .each
 
-    let SrchResltsObject = {};
     let searchParam = $('#search-tool input')[0].value.toLowerCase();
     console.log(`search paramater entered: ${searchParam}`);
 
@@ -90,25 +112,21 @@ function runSearchTool($node, searchInput){
           if ( $node.children('li')[i].textContent.toLowerCase().includes(searchParam) ) {
           // if any of the element's tags include the word or phrase "seachParam"
             $node.children('li')[i].setAttribute('id','search-result');
-            // remove the style attribute
-            matches++;
+            // adds an id of 'search-result'
+            // matches++;
+            // increments how many matches
 
           }
         }
 
-        SrchResltsObject.pageToShow = 1;
-        SrchResltsObject.itemsPerPage = 10;
-        SrchResltsObject.show = true;
-
         $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.show));
-
         // when a search result is shown
 
         //first, make sure that a previous hint is removed
         $('#resetHint').remove('*');
 
         // then put up a new one
-        const resetHint = document.createElement('span');
+        const resetHint = document.createElement('p');
         resetHint.setAttribute('id', 'resetHint');
         resetHint.setAttribute('style', 'float:right;')
         resetHint.textContent = 'submit empty search to reset....';
@@ -117,8 +135,8 @@ function runSearchTool($node, searchInput){
 
       } else {
 
-        // reset from search results, to pagination of all $node's elements
         paginationPlugin($node);
+        // reset from search results, to pagination of all $node's elements
       }
 
     });  // end add event listener to search-tool button
