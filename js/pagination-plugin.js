@@ -3,7 +3,7 @@
 
 function calcPagesNeeded(lengthOfArray, itemsPerPage){
   // determine how many pages for this array of list of items
-  return Math.ceil( lengthOfArray / itemsPerPage );
+  return Math.ceil( (lengthOfArray - 1) / itemsPerPage );
 }
 
 function setIndex( pageToShow, itemsPerPage) {
@@ -34,10 +34,11 @@ function showPage($node, pageToShow, itemsPerPage, showSrchReslts) {
      return the html collection node of ul/li elements
      required argument: jquery html collection node
   */
-  if (!showSrchReslts){
 
-      // get a starting index for this page of list items
-      let index = setIndex( pageToShow, itemsPerPage);
+  // get a starting index for this page of list items
+  let index = setIndex( pageToShow, itemsPerPage);
+
+  if (!showSrchReslts){
 
       // get the end index for this page of list of itemns
       let maxIndex = setMaxIndex($node.children().length, pageToShow, itemsPerPage);
@@ -54,12 +55,22 @@ function showPage($node, pageToShow, itemsPerPage, showSrchReslts) {
       }); // end .each
 
     } else {
+
+      // get the end index for this page of list of itemns
+      let maxIndex = setMaxIndex($node.children('#search-result').length, pageToShow, itemsPerPage);
+
       $node.children('#search-result').each( function () {
         // iterate only through list items that have the the id of search-result
-        this.removeAttribute('style');
-        // remove the  style attribute
-      }); // end .each
+        if (index <= maxIndex) {
+        // show only the 10 that corresond to the page number
+         $node.children('#search-result')[index].removeAttribute('style');
+           // remove the style attribute for this list item
+         index++;
+           // increment index
+        } // end if
 
+      }); // end .each
+      //$('#noresults').remove('*')
     } // end if/else
 
   return $node;  // return the $node with the modified list items
@@ -105,7 +116,7 @@ function createPageLinks(lengthOfArray, pageToShow, itemsPerPage, showSrchReslts
 
 } // end createPageLinks function
 
-function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) {
+function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts, nodeSearch) {
 
   /* adds pagination functionality
       calls showPage() with requried arguments to hide/show list items for a given page
@@ -194,12 +205,13 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) {
 
 } // end appendPageLinks function
 
-function paginationPlugin($node){
+function paginationPlugin($nodePaginate, nodeSearch){
   // append Search Tool
-  // use search paramaters entered into search input field
-  // display search results
-    runSearchTool($node);
 
-  // paginate and add Event Listener for each page link, add Search. Content Filter tool
-    $node.append( appendPageLinks($node) );
+
+    runSearchTool($nodePaginate, nodeSearch);
+      // append Search Tool
+      // and paginate and add Event Listener for each page link, add Search. Content Filter tool
+
+
 }
