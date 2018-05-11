@@ -134,10 +134,16 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
 
   $( "#search-tool" ).keyup(function(e){
     e.preventDefault();
-    $('.pagination').remove('*');
+    // $('.pagination').remove('*');
     $node.children().attr('style','display:none;');
     $node.children().removeAttr('id','search-result');
-    // reset $node child node attributes after each keyup search
+
+    if (!e.which === 13 ) {  // if key entered is not [ENTER or RETURN ]
+      $('.pagination').remove('*');
+    } else {
+      e.preventDefault();
+      //findDislayMatches($node, nodeSearch, SrchResltsObject);
+    }
 
     $node.children().find(nodeSearch).filter(function(){
       // filter on just first level child nodes, using the nodeSearch string, don't drill into each child node
@@ -153,7 +159,7 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
     }); // end contents filter
 
     SrchResltsObject.show = true;
-    return $(this);
+
 
 }).append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
 
