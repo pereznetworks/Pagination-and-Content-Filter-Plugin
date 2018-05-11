@@ -2,8 +2,14 @@
 // function declarations
 
 function calcPagesNeeded(lengthOfArray, itemsPerPage){
+  let pagesNeeded = 0;
   // determine how many pages for this array of list of items
-  return Math.ceil( (lengthOfArray - 1) / itemsPerPage );
+  if (Math.ceil( (lengthOfArray - 1) / itemsPerPage ) ==  0 ) {
+    pagesNeeded = 1;
+  } else {
+    pagesNeeded = Math.ceil( (lengthOfArray - 1) / itemsPerPage );
+  }
+  return pagesNeeded;
 }
 
 function setIndex( pageToShow, itemsPerPage) {
