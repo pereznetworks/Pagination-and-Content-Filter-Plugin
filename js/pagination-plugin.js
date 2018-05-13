@@ -173,6 +173,7 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts, nodeSe
 
   } // end if not showing search results
 
+  $('.pagination').remove('*');
   $node.parent().append( createPageLinks(lengthOfArray, pageNum, perPage) );
   // initial run and each time after, create and append a new set of page links
 

@@ -1,12 +1,12 @@
 # Tech Degree - Project 2 - the Pagination and Content Filter jQuery plugin
 
-    this is Project 2, TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
+    this is Project 2, part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
 
 # SUMMARY:
 
   Current features
 
-    for a selected HTML Collecton node
+    for a selected HTML Collection node
 
       Pagination:
 
@@ -30,10 +30,11 @@
           const nodeSearch = "string of text"
               // must be a tag, id, or class
                 // that selects a unique html element containing textContent
-                   // that can be used to filter child elements of $nodePaginate
+                   // that can be used to filter child elements of html element selected in $nodePaginate
 
-          runSearchTool($nodePaginate);  
-              // implements and add the content filtering and pagination to selected html node
+          runSearchTool($nodePaginate, nodeSearch);  
+              // implements and add the pagination to selected html node
+                // implements the search content filtering using the element identified in nodeSearch
 
 
       STEP 2: add the css script src tags to the html page or template as follows
@@ -82,12 +83,12 @@
 
       adds KEYUP event handler to the search input field
 
-          prevent default is set tp keep html dom from being refreshed with original view of html page
-
           as text is typed into search input field
           each of $node's child nodeSearch element textContent field is compared with the search input
           any that match are set with an  ID attribute of search-result
           any that do not match are hidden
+          previous page links are removed
+          with the enter key or clicking submit ....
 
         $node, modified or not, is passed to append
 
@@ -95,10 +96,13 @@
             1 pagelink for every 10 search results
             the first 10 are shown as page 1  
 
-              allows the initial call to runSearchTool, to display and paginate all $node's child elements
+              with initial call to runSearchTool displays and paginates all $node's child elements
 
               when there are search results, a search results flag is set to true
                 then $node child elements with ID of search-result view is paginated
+
+              hitting return or clicking submit with a blank search input field,
+                reset the view back to all $node's child elements paginated
 
       adds SUBMIT handler to the search-tool form
 

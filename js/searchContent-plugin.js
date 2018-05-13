@@ -96,16 +96,6 @@ function findDislayMatches($node, nodeSearch, srchResltsObject) {
       $node.append(appendPageLinks($node, srchResltsObject.pageToShow, srchResltsObject.itemsPerPage, srchResltsObject.show, nodeSearch));
       // when a search result is shown
 
-      //first, make sure that a previous hint is removed
-      $('#resetHint').remove('*');
-
-      // then put up a new one
-      const resetHint = document.createElement('p');
-      resetHint.setAttribute('id', 'resetHint');
-      resetHint.setAttribute('style', 'float:right;')
-      resetHint.textContent = 'submit empty search to reset....';
-      document.querySelector('.search-tool').append(resetHint);
-
     } else {
 
       paginationPlugin($node, nodeSearch);
