@@ -164,6 +164,8 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts, nodeSe
     if (lengthOfArray == 0) {
       // if no search-results
         $node.append( buildNoResultsListItem() )
+        $('.pagination').remove('*');
+        return $node;
         // prepend "no matching results found " to $node
     } else {
 
