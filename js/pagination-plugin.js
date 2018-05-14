@@ -43,6 +43,7 @@ function showPage($node, pageToShow, itemsPerPage, showSrchReslts) {
 
   // get a starting index for this page of list items
   let index = setIndex( pageToShow, itemsPerPage);
+  $('.no-resultsListItem').remove('*');
 
   if (!showSrchReslts){
 
