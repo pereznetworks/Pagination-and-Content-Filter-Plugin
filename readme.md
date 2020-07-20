@@ -1,13 +1,13 @@
 # A Pagination and Content Filter Plugin
 
   - This was originally built for Project 2 of TeamTreehouse, Tech Degree, Full Stack JavaScript
-  
+
 ## Eventually...
   - It will be adpated to be a completely modular jquery plugin and an npm package
 
 ## SUMMARY:
 
-Current features: 
+Current features:
 
 - For a selected HTML Collection node ...
 
@@ -28,9 +28,9 @@ Current features:
    so the same, also
    filtering as text is typed into search input
 
-# To use the Pagination method
+## To use the Pagination method
 
-STEP 1: add the following lines to YOURapp.js
+### STEP 1: add the following lines to YOURapp.js
 
 - const $nodePaginate = $('.myElementClass');  
     // select element with child elements to paginate
@@ -48,58 +48,61 @@ STEP 1: add the following lines to YOURapp.js
         // must pass the nodeSearch parameter
 
 
-STEP 2: add the css script src tags to the html page or template
+### STEP 2: add the css script src tags to the html page or template
 
- <link rel="stylesheet" href="css-dir/reset.css">
- <link rel="stylesheet" href="css-dir/design.css">
+    <link rel="stylesheet" href="css-dir/reset.css">
+
+    <link rel="stylesheet" href="css-dir/design.css">
 
 
-STEP 3: add the javascript src tags to the html page or template
+### STEP 3: add the javascript src tags to the html page or template
 
 - requires at least jQuery 3.3.1
 
-  <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
+      <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
 
-  <script src="js-dir-to/search.js"></script>
+      <script src="js-dir-to/search.js"></script>
 
-  <script src="js-dir-to/paginatgion.js"></script>
+      <script src="js-dir-to/paginatgion.js"></script>
 
-  <script src="js-dir-or-link-to/YOURapp.js"></script>
+      <script src="js-dir-or-link-to/YOURapp.js"></script>
 
-# FUNCTION DETAIL pagination()
+## FUNCTION DETAIL pagination()
 
-- This a simple function the calls 1 function:
+### This calls 1 function:
   - runSearchTool()
 
-- 1st argument or paramter, REQUIRED: $nodePaginate
+### 1st argument or paramter, REQUIRED: $nodePaginate
   - must be the HTML Collection node that is the direct parent of ...
     - the child elements that need...
     - the pagination and content filtering features
 
-- 2nd argument or paramter, REQUIRED: nodeSearch
+### 2nd argument or paramter, REQUIRED: nodeSearch
   - must be a unique element, classname, id ...
     - found once in each of $node's child elements,
     - containing textContent that can be matched via string compare
 
+## FUNCTION DETIAL runSearchTool():
 
-# FUNCTION DETIAL runSearchTool():
+### runSearchTool($node)
 
-- runSearchTool($node)
  - calls appendSearchTool
- - calls buildSearchTool, builds a html Form node called, 'searchTool', with an text input field and submit button
+    - calls buildSearchTool, builds a html Form node called, 'searchTool', with an text input field and submit button
+
  - adds the searchTool Form, as a the first child element of the parent of the $node
+
  - adds KEYUP event handler to the search input field
    - so as enterting search input...
    - actually searches with each char of text typed
 
 - adds SUBMIT handler to the search-tool form
-  - captures search input
-  - if search input is entered..
-  - hides all child elements of $node passed,
-  - removes pagination links  
-  - iterates through $node child elements
-  - if any child elements containing search input text
-  - are set with an attribute id of search-result
+   - captures search input
+   - if search input is entered..
+   - hides all child elements of $node passed,
+   - removes pagination links  
+   - iterates through $node child elements
+   - if any child elements containing search input text
+   - are set with an attribute id of search-result
 
 - appendPageLinks links is called...
   - to display and paginate search results
@@ -109,11 +112,12 @@ STEP 3: add the javascript src tags to the html page or template
   - resets to original view of $node with corresponding page links
 
 
-# FUNCTION DETIAL appendPageLinks():
+## FUNCTION DETIAL appendPageLinks():
 
-- appendPageLinks() function,
-  - adds the pagination functionality
-  - for selected html elements child elements
+### appendPageLinks() function,
+
+- adds the pagination functionality
+- for selected html elements child elements
 
 - calls hideItems(), to hides all the child elements
   - takes a $node as required argument
@@ -147,28 +151,28 @@ STEP 3: add the javascript src tags to the html page or template
     - and whether or not $node is being filtered with search results
 
 
-# JS src code
+## JS src code
 
-- js/searchContent.js
+### js/searchContent.js
   - src for the runSearchTool() and content filtering functions
 
-- js/pagination.js
+### js/pagination.js
   - src for the pagination(), appendPageLinks()...
   - and other pagination functions
 
-# CSS styling of elements for appendPageLinks():
+## CSS styling of elements for appendPageLinks():
 
 - css/design.css, css styling includes,
   - styles for pagination buttons
   - and sample student-list/student-items/cf
 
-- css/reset.css, 
+- css/reset.css,
   - compatibility for older browsers
 
 - other than pagination and content filter...
   - css styling of your html sub-elements will be unchanged
 
-# SAMPLE HTML with student list for appendPageLinks():
+## SAMPLE HTML with student list for appendPageLinks():
 
 - index.html, in the root dir,
   - a sample is provided to for demonstration
