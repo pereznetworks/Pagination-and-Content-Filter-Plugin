@@ -86,27 +86,26 @@ This a simple function the calls 1 function:
 
 runSearchTool($node)
 
-calls appendSearchTool
+ calls appendSearchTool
 
-  calls buildSearchTool, builds a html Form node called, 'searchTool'
-    with an text input field and submit button
-  adds the searchTool Form
-   as a the first child element of the parent of the $node
+ calls buildSearchTool, builds a html Form node called, 
+ 'searchTool', with an text input field and submit button
+  adds the searchTool Form, as a the first child element of the parent of the $node
 
 adds KEYUP event handler to the search input field
 
-  same as submitting search input...
-  doing with each char of text  typed
+ same as submitting search input...
+ doing with each char of text  typed
 
 adds SUBMIT handler to the search-tool form
 
-  captures search input
-  if search input is entered..
-    hides all child elements of $node passed,
-    removes pagination links  
-    iterates through $node child elements
-        if any child elements containing search input text
-          are set with an attribute id of search-result
+ captures search input
+ if search input is entered..
+   hides all child elements of $node passed,
+   removes pagination links  
+   iterates through $node child elements
+    if any child elements containing search input text
+    are set with an attribute id of search-result
 
   appendPageLinks links is called...
     to display and paginate search results
@@ -120,18 +119,18 @@ adds SUBMIT handler to the search-tool form
 # FUNCTION DETIAL appendPageLinks():
 
 appendPageLinks() function,
-adds the pagination functionality
-for selected html elements child elements
+  adds the pagination functionality
+  for selected html elements child elements
 
-calls hideItems(), to hides all the child elements
-  takes a $node as required argument
-  a style attribute of display:none is added to each child element
-  returns the $node
+  calls hideItems(), to hides all the child elements
+   takes a $node as required argument
+   a style attribute of display:none is added to each child element
+   returns the $node
 
-calls showPage(), to show child elements for a given page
-  takes a $node as required argument
-  calls other smaller functions to...
-    calc how many pages needed for all $node child elements
+  calls showPage(), to show child elements for a given page
+   takes a $node as required argument
+   calls other smaller functions to...
+    calculate how many pages needed for all $node child elements
     set index and maxIndex for iterating through child elements
     for the each of $node's child elements
       any that have ID of search-result
@@ -140,20 +139,19 @@ calls showPage(), to show child elements for a given page
     returns the $node
 
 calls createPageLinks(),
-to create the html elements for a given number of page links
-  takes a lengthOfArray, pageToShow and itemsPerPage
-    returns a ul html element, with a set of li elements
-      each li element,
-        contains an anchor tag with a href link to each page
+ to create the html elements for a given number of page links
+ takes a lengthOfArray, pageToShow and itemsPerPage
+ returns a ul html element, with a set of li elements
+   each li element,
+   contains an anchor tag with a href link to each page
 
 adds an event listener for each page link...
   each event listener as a handler function that ...
-    removes the current page links
-      and their respective event listeners
-    and calls the appendPageLinks() function, passing $node,
-     setting pageToShow to the pageLink clicked on..
-      as well as the itemsPerPage
-       and whether or not $node is being filtered with search results
+  removes the current page links, and their respective event listeners
+  and calls the appendPageLinks() function, passing $node,
+    setting pageToShow to the pageLink clicked on..
+    as well as the itemsPerPage
+    and whether or not $node is being filtered with search results
 
 
 # JS src code
