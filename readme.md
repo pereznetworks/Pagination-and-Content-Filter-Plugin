@@ -7,9 +7,9 @@
 
 ## SUMMARY:
 
-Current features
+Current features: 
 
-for a selected HTML Collection node
+- For a selected HTML Collection node ...
 
   Pagination:
 
