@@ -149,30 +149,32 @@ STEP 3: add the javascript src tags to the html page or template
 
 # JS src code
 
-js/searchContent.js
-    - src for the runSearchTool() and content filtering functions
+- js/searchContent.js
+  - src for the runSearchTool() and content filtering functions
 
-js/pagination.js
-    - src for the pagination(), appendPageLinks()...
-      and other pagination functions
+- js/pagination.js
+  - src for the pagination(), appendPageLinks()...
+  - and other pagination functions
 
 # CSS styling of elements for appendPageLinks():
 
-css/design.css, css styling includes,
-    - styles for pagination buttons
-    - and sample student-list/student-items/cf
+- css/design.css, css styling includes,
+  - styles for pagination buttons
+  - and sample student-list/student-items/cf
 
-css/reset.css, a compatibility for older browsers
+- css/reset.css, 
+  - compatibility for older browsers
 
-other than pagination and content filter...
-    css styling of your html sub-elements will be unchanged
+- other than pagination and content filter...
+  - css styling of your html sub-elements will be unchanged
 
 # SAMPLE HTML with student list for appendPageLinks():
 
 - index.html, in the root dir,
-  a sample is provided to for demonstration
+  - a sample is provided to for demonstration
 
 - student-list-examples/..,
-    more html examples for demonstration
+  - more html examples for demonstration
 
-- js/app.js, a sample app.js for demonstration
+- js/app.js,
+  - a sample app.js for demonstration
