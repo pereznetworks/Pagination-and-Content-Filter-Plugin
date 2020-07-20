@@ -1,7 +1,9 @@
-# Tech Degree - Project 2 - the Pagination and Content Filter using jQuery
+# A Pagination and Content Filter Plugin
 
-    this is Project 2,
-    part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
+  - This was originally built for Project 2 of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
+  
+## Evntually...
+  - It will be adpated to be a completely modular jquery plugin and an npm package
 
 # SUMMARY:
 
