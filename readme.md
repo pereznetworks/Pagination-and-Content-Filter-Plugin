@@ -13,73 +13,73 @@ for a selected HTML Collection node
 
   Pagination:
 
-    Display of child elements, or items, based on Items-Per-Page.
-    Pagination applied to a selected HTML parent element.
-    Default is 10 Items-Per-Page , and 1st Page is initially displayed
+  - Display of child elements, or items, based on Items-Per-Page.
+  - Pagination applied to a selected HTML parent element.
+  - Default is 10 Items-Per-Page , and 1st Page is initially displayed
 
   Search Form and Content Filter:
 
-    using a search input field:
-    on 'submit' display any html node child elements..
-     whose targeted property or attribute field matches...
-       text submitted into search-tool's input field
+  - using a search input field:
+   on 'submit' display any html node child elements..
+   whose targeted property or attribute field matches...
+   text submitted into search-tool's input field
 
-    'Live filtering':
-      so the same, also
-        filtering as text is typed into search input
+  - 'Live filtering':
+   so the same, also
+   filtering as text is typed into search input
 
 # To use the Pagination method
 
 STEP 1: add the following lines to YOURapp.js
 
-    const $nodePaginate = $('.myElementClass');  
-        // select element with child elements to paginate
+const $nodePaginate = $('.myElementClass');  
+    // select element with child elements to paginate
 
-    const nodeSearch = "string of text"
-        // must be a tag, id, or class
-          // that selects a unique html element containing textContent
-             // that can be used to filter...
-               // all child elements of parent html element...
-                  // selected in $nodePaginate
+const nodeSearch = "string of text"
+    // must be a tag, id, or class
+      // that selects a unique html element containing textContent
+         // that can be used to filter...
+           // all child elements of parent html element...
+              // selected in $nodePaginate
 
-    pagination($nodePaginate, nodeSearch);  
-        // implements and add the pagination to selected html node
-          // also calls runSearchTool
-            // must pass the nodeSearch parameter
+pagination($nodePaginate, nodeSearch);  
+    // implements and add the pagination to selected html node
+      // also calls runSearchTool
+        // must pass the nodeSearch parameter
 
 
 STEP 2: add the css script src tags to the html page or template
 
-    <link rel="stylesheet" href="css-dir/reset.css">
-    <link rel="stylesheet" href="css-dir/design.css">
+<link rel="stylesheet" href="css-dir/reset.css">
+<link rel="stylesheet" href="css-dir/design.css">
 
 
 STEP 3: add the javascript src tags to the html page or template
 
-    requires at least jQuery 3.3.1
+requires at least jQuery 3.3.1
 
-    <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
+<script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
 
-    <script src="js-dir-to/search.js"></script>
+<script src="js-dir-to/search.js"></script>
 
-    <script src="js-dir-to/paginatgion.js"></script>
+<script src="js-dir-to/paginatgion.js"></script>
 
-    <script src="js-dir-or-link-to/YOURapp.js"></script>
+<script src="js-dir-or-link-to/YOURapp.js"></script>
 
 # FUNCTION DETAIL pagination()
 
 This a simple function the calls 1 function:
   runSearchTool()
 
- 1st argument or paramter, REQUIRED: $nodePaginate
-    must be the HTML Collection node that is the direct parent of ...
-        the child elements that need...
-         the pagination and content filtering features
+1st argument or paramter, REQUIRED: $nodePaginate
+  must be the HTML Collection node that is the direct parent of ...
+      the child elements that need...
+       the pagination and content filtering features
 
- 2nd argument or paramter, REQUIRED: nodeSearch
-    must be a unique element, classname, id ...
-      found once in each of $node's child elements,
-        containing textContent that can be matched via string compare
+2nd argument or paramter, REQUIRED: nodeSearch
+  must be a unique element, classname, id ...
+    found once in each of $node's child elements,
+      containing textContent that can be matched via string compare
 
 
 # FUNCTION DETIAL runSearchTool():
