@@ -32,17 +32,17 @@ for a selected HTML Collection node
 
 STEP 1: add the following lines to YOURapp.js
 
-const $nodePaginate = $('.myElementClass');  
+- const $nodePaginate = $('.myElementClass');  
     // select element with child elements to paginate
 
-const nodeSearch = "string of text"
+- const nodeSearch = "string of text"
     // must be a tag, id, or class
       // that selects a unique html element containing textContent
          // that can be used to filter...
            // all child elements of parent html element...
               // selected in $nodePaginate
 
-pagination($nodePaginate, nodeSearch);  
+- pagination($nodePaginate, nodeSearch);  
     // implements and add the pagination to selected html node
       // also calls runSearchTool
         // must pass the nodeSearch parameter
@@ -50,21 +50,21 @@ pagination($nodePaginate, nodeSearch);
 
 STEP 2: add the css script src tags to the html page or template
 
-<link rel="stylesheet" href="css-dir/reset.css">
-<link rel="stylesheet" href="css-dir/design.css">
+ <link rel="stylesheet" href="css-dir/reset.css">
+ <link rel="stylesheet" href="css-dir/design.css">
 
 
 STEP 3: add the javascript src tags to the html page or template
 
-requires at least jQuery 3.3.1
+- requires at least jQuery 3.3.1
 
-<script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
+  <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
 
-<script src="js-dir-to/search.js"></script>
+  <script src="js-dir-to/search.js"></script>
 
-<script src="js-dir-to/paginatgion.js"></script>
+  <script src="js-dir-to/paginatgion.js"></script>
 
-<script src="js-dir-or-link-to/YOURapp.js"></script>
+  <script src="js-dir-or-link-to/YOURapp.js"></script>
 
 # FUNCTION DETAIL pagination()
 
